@@ -29,10 +29,13 @@ function loadPokemonItens(offset, limit) {
         const newHtml = pokemons.map(convertPokemonToLi).join('')
         pokemonList.innerHTML += newHtml
 
-        document.querySelectorAll('.pokemon').forEach((item, index) => {
+        document.querySelectorAll('.pokemon').forEach(item => {
             item.addEventListener('click', () => {
-                showPokemonDetail(pokemons [index]);
-            
+                const pokemonNumber = item.querySelector('.number').textContent.replace('#', '');
+                const selectedPokemon = pokemons.find(p => p.number == pokemonNumber);
+                if (selectedPokemon) {
+                    showPokemonDetail(selectedPokemon);
+                }
             })
         })    
     })
