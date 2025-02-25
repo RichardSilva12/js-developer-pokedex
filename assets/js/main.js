@@ -1,5 +1,6 @@
 const pokemonList = document.getElementById('pokemonList')
 const loadMoreButton = document.getElementById('loadMoreButton')
+const pokemonDetailModal = document.getElementById('pokemonDetailModal')
 
 const maxRecords = 151
 const limit = 10
@@ -27,6 +28,43 @@ function loadPokemonItens(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
         const newHtml = pokemons.map(convertPokemonToLi).join('')
         pokemonList.innerHTML += newHtml
+
+        document.querySelectorAll('.pokemon').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                showPokemonDetail(pokemons [index]);
+            
+            })
+        })    
+    })
+}
+
+function showPokemonDetail (pokemon) {
+
+    const modal = document.getElementById('pokemonDetailModal')
+
+    modal.innerHTML = `
+    <div class="modal-content ${pokemon.type}">
+            <span class="close-button">&times;</span>
+            <h2 class="name">${pokemon.name}</h2>
+            <span class="number">#${pokemon.number}</span>
+            
+            <div class="pokemon-image">
+                <img src="${pokemon.photo}" alt="${pokemon.name}">
+            </div>
+
+            <div class="details">
+                <p><strong>Tipo:</strong> ${pokemon.types.join(', ')}</p>
+                <p><strong>Altura:</strong> ${pokemon.height / 10} m</p>
+                <p><strong>Peso:</strong> ${pokemon.weight / 10} kg</p>
+            </div>
+        </div>
+    `
+    modal.className = `modal ${pokemon.type}`;
+    
+    modal.classList.remove('hidden')
+
+    modal.querySelector('.close-button').addEventListener('click', () => {
+        modal.classList.add('hidden')
     })
 }
 

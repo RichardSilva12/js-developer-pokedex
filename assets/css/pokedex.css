@@ -163,3 +163,76 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
+
+
+
+#pokemonDetailModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#pokemonDetailModal .modal-content {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    color: white;
+}
+
+/* Agora, aplicamos a cor correta baseada no tipo do Pokémon */
+.modal-content.fire { background: #F57D31; } 
+.modal-content.water { background: #6493EB; } 
+.modal-content.grass { background: #74CB48; } 
+.modal-content.electric { background: #F9CF30; } 
+.modal-content.psychic { background: #FB5584; } 
+.modal-content.ice { background: #9AD6DF; } 
+.modal-content.dragon { background: #7037FF; } 
+.modal-content.dark { background: #75574C; } 
+.modal-content.fairy { background: #E69EAC; } 
+.modal-content.normal { background: #AAA67F; } 
+.modal-content.fighting { background: #C12239; } 
+.modal-content.flying { background: #A891EC; } 
+.modal-content.poison { background: #A43E9E; } 
+.modal-content.ground { background: #DEC16B; } 
+.modal-content.rock { background: #B69E31; } 
+.modal-content.bug { background: #A7B723; } 
+.modal-content.ghost { background: #70559B; } 
+.modal-content.steel { background: #B7B9D0; } 
+
+.pokemon-image img {
+    width: 200px;
+    height: 200px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+#pokemonDetailModal:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+}
+
+
